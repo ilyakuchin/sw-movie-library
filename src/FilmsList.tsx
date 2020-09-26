@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Film from './Film';
 import axios from 'axios';
 import FilmCard from './FilmCard';
+import './FilmsList.css';
 
 const FilmsList: React.FunctionComponent = () => {
   const [films, setFilms] = useState<Film[]>([]);
@@ -42,7 +43,7 @@ const FilmsList: React.FunctionComponent = () => {
     />
   ));
 
-  return <div>{filmsList}</div>;
+  return <div className='container'>{filmsList}</div>;
 };
 
 export default FilmsList;

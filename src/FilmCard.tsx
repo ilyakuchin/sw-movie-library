@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Film from './Film';
+import './FilmCard.css';
 
 const FilmCard: React.FunctionComponent<Film> = ({
   title,
@@ -8,11 +9,15 @@ const FilmCard: React.FunctionComponent<Film> = ({
   characters,
 }) => {
   return (
-    <div>
-      <div>{title}</div>
+    <div className='card'>
+      <div>
+        <b>{title}</b>
+      </div>
       <div>{openingCrawl}</div>
-      <div>{releaseDate}</div>
-      <div>Characters</div>
+      <div>
+        <b>Release Date:</b> {releaseDate}
+      </div>
+      <a href='#'>Characters</a>
     </div>
   );
 };
