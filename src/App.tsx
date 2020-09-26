@@ -1,10 +1,11 @@
 import React from 'react';
+import FilmsList from './FilmsList';
 
 const App: React.FC = () => {
   return (
     <div>
       <div>Filters</div>
-      <div>FilmCards</div>
+      <FilmsList />
     </div>
   );
 };
