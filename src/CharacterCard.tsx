@@ -36,6 +36,7 @@ const CharacterCard: React.FC = () => {
       <div>Weight: {character.weight} </div>
       <div>Birthdate: {character.birthdate} </div>
       <div>Gender: {character.gender} </div>
+      <div>Films</div>
     </div>
   );
 };
