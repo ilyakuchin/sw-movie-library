@@ -20,6 +20,8 @@ const FilmCard: React.FunctionComponent<IFilmCardProps> = ({
     characters: [],
   });
 
+  const [showMore, setShowMore] = useState<boolean>(false);
+
   useEffect(() => {
     axios.get(filmUrl).then((res) => {
       const filmRawData = res.data;
@@ -40,7 +42,26 @@ const FilmCard: React.FunctionComponent<IFilmCardProps> = ({
       <div>
         <b>{film.title}</b>
       </div>
-      <div>{film.openingCrawl}</div>
+      {showMore ? (
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            setShowMore(false);
+          }}
+        >
+          Show less
+        </button>
+      ) : (
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            setShowMore(true);
+          }}
+        >
+          Show more
+        </button>
+      )}
+      {showMore ? <div>{film.openingCrawl}</div> : <div></div>}
       <div>
         <b>Release Date:</b> {film.releaseDate}
       </div>
