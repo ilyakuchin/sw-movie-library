@@ -1,11 +1,13 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import Charatcter from './Character';
+import Character from './Character';
+import axios from 'axios';
 
-const url: string = 'http://swapi.dev/api/people/1/';
+interface ICharacterCard {
+  characterUrl: string;
+}
 
-const CharacterCard: React.FC = () => {
-  const [character, setCharacter] = useState<Charatcter>({
+const CharacterCard: React.FC<ICharacterCard> = ({ characterUrl }) => {
+  const [character, setCharacter] = useState<Character>({
     name: '',
     height: '',
     weight: '',
@@ -13,9 +15,8 @@ const CharacterCard: React.FC = () => {
     gender: '',
     films: [],
   });
-
   useEffect(() => {
-    axios.get(url).then((res) => {
+    axios.get(characterUrl).then((res) => {
       const character = res.data;
 
       setCharacter({
@@ -27,7 +28,7 @@ const CharacterCard: React.FC = () => {
         films: character.films,
       });
     });
-  }, []);
+  }, [characterUrl]);
 
   return (
     <div>

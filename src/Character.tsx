@@ -1,4 +1,4 @@
-export default interface Charatcter {
+export default interface Character {
   name: string;
   height: string;
   weight: string;

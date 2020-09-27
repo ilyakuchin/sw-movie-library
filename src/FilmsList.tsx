@@ -1,45 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Film from './Film';
-import axios from 'axios';
+
 import FilmCard from './FilmCard';
 import './FilmsList.css';
 
-const FilmsList: React.FunctionComponent = () => {
-  const [films, setFilms] = useState<Film[]>([]);
-  const url = 'http://swapi.dev/api/films/';
+interface IFilmsListProps {
+  films: Film[];
+  updateCharacters: Function;
+}
 
-  const mapRawFilmsDataToFilmsList = (
-    rawFilmsList: {
-      title: any;
-      release_date: any;
-      opening_crawl: any;
-      characters: any;
-    }[]
-  ) =>
-    rawFilmsList.map((item) => {
-      return {
-        title: item.title,
-        releaseDate: item.release_date,
-        openingCrawl: item.opening_crawl,
-        characters: item.characters,
-      };
-    });
-
-  useEffect(() => {
-    axios.get(url).then((res) => {
-      const rawFilmsData = res.data.results;
-      const films: Film[] = mapRawFilmsDataToFilmsList(rawFilmsData);
-
-      setFilms(films);
-    });
-  }, []);
-
+const FilmsList: React.FunctionComponent<IFilmsListProps> = ({
+  films,
+  updateCharacters,
+}) => {
   const filmsList = films.map((item: Film) => (
     <FilmCard
+      key={item.title}
       title={item.title}
       openingCrawl={item.openingCrawl}
       releaseDate={item.releaseDate}
       characters={item.characters}
+      updateCharacters={updateCharacters}
     />
   ));
 

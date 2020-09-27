@@ -1,12 +1,21 @@
 import * as React from 'react';
-import Film from './Film';
 import './FilmCard.css';
+import { Link } from 'react-router-dom';
 
-const FilmCard: React.FunctionComponent<Film> = ({
+interface IFilmCardProps {
+  title: string;
+  openingCrawl: string;
+  releaseDate: string;
+  characters: string[];
+  updateCharacters: Function;
+}
+
+const FilmCard: React.FunctionComponent<IFilmCardProps> = ({
   title,
   openingCrawl,
   releaseDate,
   characters,
+  updateCharacters,
 }) => {
   return (
     <div className='card'>
@@ -17,7 +26,14 @@ const FilmCard: React.FunctionComponent<Film> = ({
       <div>
         <b>Release Date:</b> {releaseDate}
       </div>
-      <a href='#'>Characters</a>
+      <Link
+        to='/characters'
+        onClick={() => {
+          updateCharacters(characters);
+        }}
+      >
+        Characters
+      </Link>
     </div>
   );
 };
