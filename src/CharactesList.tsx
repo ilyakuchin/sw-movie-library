@@ -1,5 +1,6 @@
 import * as React from 'react';
 import CharacterCard from './CharacterCard';
+import './CharactersList.css';
 
 interface ICharactersListProps {
   charactersUrlList: string[];
@@ -18,7 +19,7 @@ const CharactersList: React.FunctionComponent<ICharactersListProps> = ({
     />
   ));
 
-  return <div>{charactersList}</div>;
+  return <div className='container'>{charactersList}</div>;
 };
 
 export default CharactersList;
