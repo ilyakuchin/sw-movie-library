@@ -1,30 +1,24 @@
 import React from 'react';
-import FilmsList from './FilmsList';
+import FilmsList from './components/FilmsList/FilmsList';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
-import CharactersList from './CharactesList';
+import CharactersList from './components/CharactersList/CharactesList';
+import { Filters } from './components/Filters/Filters';
 
 const url = 'http://swapi.dev/api/films/';
 
-export interface IAppProps {}
+interface AppProps {}
 
-export interface IAppState {
+interface AppState {
   filmsUrlList: string[];
   charactersUrlList: string[];
 }
 
-export default class App extends React.Component<{}, IAppState> {
-  constructor(props: IAppProps) {
-    super(props);
-
-    this.state = {
-      filmsUrlList: [],
-      charactersUrlList: [],
-    };
-
-    this.updateCharactersUrlList = this.updateCharactersUrlList.bind(this);
-    this.updateFilmsUrlList = this.updateFilmsUrlList.bind(this);
-  }
+export default class App extends React.Component<AppProps, AppState> {
+  state = {
+    filmsUrlList: [],
+    charactersUrlList: [],
+  };
 
   componentDidMount() {
     axios.get(url).then((res) => {
@@ -39,20 +33,20 @@ export default class App extends React.Component<{}, IAppState> {
     });
   }
 
-  updateCharactersUrlList(charactersUrlList: string[]) {
+  updateCharactersUrlList = (charactersUrlList: string[]) => {
     this.setState({ charactersUrlList });
-  }
+  };
 
-  updateFilmsUrlList(filmsUrlList: string[]) {
+  updateFilmsUrlList = (filmsUrlList: string[]) => {
     this.setState({ filmsUrlList });
-  }
+  };
 
-  public render() {
+  render() {
     return (
       <Router>
-        <div>Filters</div>
         <Switch>
           <Route exact path='/'>
+            <Filters />
             <FilmsList
               filmsUrlList={this.state.filmsUrlList}
               updateCharacters={this.updateCharactersUrlList}

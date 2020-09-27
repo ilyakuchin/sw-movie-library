@@ -1,10 +1,10 @@
 import * as React from 'react';
-import CharacterCard from './CharacterCard';
+import CharacterCard from '../CharacterCard/CharacterCard';
 import './CharactersList.css';
 
 interface ICharactersListProps {
   charactersUrlList: string[];
-  updateFilmsUrlList: Function;
+  updateFilmsUrlList: (films: string[]) => void;
 }
 
 const CharactersList: React.FunctionComponent<ICharactersListProps> = ({

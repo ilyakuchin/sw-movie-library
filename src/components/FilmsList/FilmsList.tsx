@@ -1,6 +1,6 @@
 import React from 'react';
 
-import FilmCard from './FilmCard';
+import FilmCard from '../FilmCard/FilmCard';
 import './FilmsList.css';
 
 interface IFilmsListProps {

@@ -1,0 +1,8 @@
+.card {
+  flex: 1 0 21%;
+  border-radius: 25px;
+  margin: 5px;
+  padding: 10px;
+  box-shadow: 1px 1px 1px grey;
+  background-color: white;
+}

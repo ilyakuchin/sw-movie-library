@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import './Card.css';
+import './FilmCard.css';
 import { Link } from 'react-router-dom';
-import Film from './Film';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as liked } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as notLiked } from '@fortawesome/free-regular-svg-icons';
+import './FilmCard.css';
 
 interface IFilmCardProps {
   filmUrl: string;
   updateCharacters: Function;
+}
+
+interface Film {
+  title: string;
+  releaseDate: string;
+  openingCrawl: string;
+  characters: string[];
 }
 
 const FilmCard: React.FunctionComponent<IFilmCardProps> = ({
@@ -83,7 +90,7 @@ const FilmCard: React.FunctionComponent<IFilmCardProps> = ({
           Show more
         </button>
       )}
-      {showMore ? <div>{film.openingCrawl}</div> : <div></div>}
+      {showMore && <div>{film.openingCrawl}</div>}
       <div>
         <b>Release Date:</b> {film.releaseDate}
       </div>
