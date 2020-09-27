@@ -3,6 +3,9 @@ import './Card.css';
 import { Link } from 'react-router-dom';
 import Film from './Film';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as liked } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as notLiked } from '@fortawesome/free-regular-svg-icons';
 
 interface IFilmCardProps {
   filmUrl: string;
@@ -21,6 +24,7 @@ const FilmCard: React.FunctionComponent<IFilmCardProps> = ({
   });
 
   const [showMore, setShowMore] = useState<boolean>(false);
+  const [isLike, setIsLike] = useState<boolean>(false);
 
   useEffect(() => {
     axios.get(filmUrl).then((res) => {
@@ -42,6 +46,24 @@ const FilmCard: React.FunctionComponent<IFilmCardProps> = ({
       <div>
         <b>{film.title}</b>
       </div>
+      {isLike ? (
+        <FontAwesomeIcon
+          icon={liked}
+          onClick={(e) => {
+            e.preventDefault();
+            setIsLike(false);
+          }}
+        />
+      ) : (
+        <FontAwesomeIcon
+          icon={notLiked}
+          onClick={(e) => {
+            e.preventDefault();
+            setIsLike(true);
+          }}
+        />
+      )}
+
       {showMore ? (
         <button
           onClick={(e) => {
