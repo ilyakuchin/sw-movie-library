@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import Character from './Character';
+import { Link } from 'react-router-dom';
+import './Card.css';
 import axios from 'axios';
 
 interface ICharacterCard {
   characterUrl: string;
+  updateFilmsUrlList: Function;
 }
 
-const CharacterCard: React.FC<ICharacterCard> = ({ characterUrl }) => {
+const CharacterCard: React.FC<ICharacterCard> = ({
+  characterUrl,
+  updateFilmsUrlList,
+}) => {
   const [character, setCharacter] = useState<Character>({
     name: '',
     height: '',
@@ -31,13 +37,15 @@ const CharacterCard: React.FC<ICharacterCard> = ({ characterUrl }) => {
   }, [characterUrl]);
 
   return (
-    <div>
+    <div className='card'>
       <div>Name: {character.name} </div>
       <div>Height: {character.height} </div>
       <div>Weight: {character.weight} </div>
       <div>Birthdate: {character.birthdate} </div>
       <div>Gender: {character.gender} </div>
-      <div>Films</div>
+      <Link to='/' onClick={() => updateFilmsUrlList(character.films)}>
+        Films
+      </Link>
     </div>
   );
 };

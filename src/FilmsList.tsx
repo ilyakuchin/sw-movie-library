@@ -1,27 +1,19 @@
 import React from 'react';
-import Film from './Film';
 
 import FilmCard from './FilmCard';
 import './FilmsList.css';
 
 interface IFilmsListProps {
-  films: Film[];
+  filmsUrlList: string[];
   updateCharacters: Function;
 }
 
 const FilmsList: React.FunctionComponent<IFilmsListProps> = ({
-  films,
+  filmsUrlList: films,
   updateCharacters,
 }) => {
-  const filmsList = films.map((item: Film) => (
-    <FilmCard
-      key={item.title}
-      title={item.title}
-      openingCrawl={item.openingCrawl}
-      releaseDate={item.releaseDate}
-      characters={item.characters}
-      updateCharacters={updateCharacters}
-    />
+  const filmsList = films.map((item: string) => (
+    <FilmCard key={item} filmUrl={item} updateCharacters={updateCharacters} />
   ));
 
   return <div className='container'>{filmsList}</div>;
